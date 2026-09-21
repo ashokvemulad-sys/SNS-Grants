@@ -41,25 +41,25 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen text-slate-800 antialiased pb-12">
+<body class="bg-gradient-to-br from-slate-100 via-blue-50/30 to-indigo-50/20 min-h-screen text-slate-800 antialiased pb-12">
 
-    <!-- TOP MODERN APP HEADER -->
-    <header class="no-print bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white shadow-xl sticky top-0 z-30 border-b border-blue-800">
+    <!-- TOP VIBRANT APP HEADER -->
+    <header class="no-print bg-gradient-to-r from-blue-900 via-indigo-800 to-purple-900 text-white shadow-xl sticky top-0 z-30 border-b border-indigo-700/50 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
-                <img src="https://raw.githubusercontent.com/ashokvemulad-sys/sparsh-reports/refs/heads/main/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow"[cite: 1]>
+                <img src="https://raw.githubusercontent.com/ashokvemulad-sys/sparsh-reports/refs/heads/main/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-md">
                 <div>
-                    <h1 class="text-xs sm:text-base font-bold tracking-tight uppercase leading-tight">Samagra Shiksha - SNA SPARSH</h1>
-                    <p class="text-[10px] sm:text-xs text-blue-200">Official Proceedings, Model Resolutions & DDO Summary FY 2026-27</p>
+                    <h1 class="text-xs sm:text-base font-extrabold tracking-tight uppercase leading-tight bg-gradient-to-r from-white via-blue-100 to-amber-200 bg-clip-text text-transparent">Samagra Shiksha - SNA SPARSH</h1>
+                    <p class="text-[10px] sm:text-xs text-blue-200 font-medium">School & Sports Grants FY 2026-27 | Proceedings & Reports</p>
                 </div>
             </div>
             
             <div class="flex items-center gap-2">
                 <div class="hidden sm:flex flex-col text-right text-[11px] text-blue-200">
-                    <span>Views: <strong id="viewCount" class="text-yellow-300">1</strong></span>
+                    <span>Views: <strong id="viewCount" class="text-amber-300">1</strong></span>
                     <span class="text-[10px] text-blue-300">By Ashok Vemula</span>
                 </div>
-                <button onclick="window.print()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 transition text-slate-950 px-3.5 py-2 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5">
+                <button onclick="window.print()" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 transition text-slate-950 px-4 py-2 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 border border-amber-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
                     <span>Print Report</span>
                 </button>
@@ -69,18 +69,18 @@
 
     <main class="no-print max-w-6xl mx-auto p-3 sm:p-6 space-y-4">
         
-        <!-- DATA SELECTION PANEL -->
-        <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80 transition hover:shadow-md">
+        <!-- STEP 1: MODERN FILTER & DATA CARD -->
+        <div class="bg-white/95 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md border border-slate-200/80 transition-all">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
-                <div class="flex items-center gap-2">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-100 text-blue-700 font-bold text-xs">1</span>
+                <div class="flex items-center gap-2.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-indigo-600 text-white font-bold text-xs shadow-sm">1</span>
                     <h2 class="text-sm sm:text-base font-bold text-slate-800">Filter & Select School Grant Data</h2>
                 </div>
                 <div class="flex items-center gap-2">
-                    <span id="dataStatus" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                    <span id="dataStatus" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm">
                         ● Loading Grants...
                     </span>
-                    <button onclick="autoFillDate()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-2.5 py-1 rounded-lg font-medium transition">
+                    <button onclick="autoFillDate()" class="text-xs bg-slate-100 hover:bg-slate-200 active:scale-95 text-slate-700 px-3 py-1 rounded-xl font-medium transition shadow-sm border border-slate-200">
                         📅 Today's Date
                     </button>
                 </div>
@@ -88,10 +88,9 @@
 
             <!-- FILTERS GRID -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-                <!-- 1. GRANT TYPE -->
                 <div>
-                    <label class="block text-[11px] font-semibold tracking-wider text-purple-700 uppercase mb-1">1. Grant Type</label>
-                    <select id="grantTypeSelect" class="w-full text-xs p-2.5 bg-purple-50/50 border border-purple-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition">
+                    <label class="block text-[11px] font-bold tracking-wider text-purple-700 uppercase mb-1">Grant Type</label>
+                    <select id="grantTypeSelect" class="w-full text-xs p-2.5 bg-purple-50/60 border border-purple-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition shadow-sm">
                         <option value="">-- All Grant Types --</option>
                         <option value="Sports Grant">⚽ Sports Grant</option>
                         <option value="Composit School Grant">🏫 Composite School Grant</option>
@@ -100,100 +99,137 @@
                     </select>
                 </div>
 
-                <!-- 2. DISTRICT -->
                 <div>
-                    <label class="block text-[11px] font-semibold tracking-wider text-slate-500 uppercase mb-1">2. District</label>
-                    <select id="distSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition" disabled>
+                    <label class="block text-[11px] font-bold tracking-wider text-slate-600 uppercase mb-1">District</label>
+                    <select id="distSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition shadow-sm" disabled>
                         <option value="">-- All Districts --</option>
                     </select>
                 </div>
 
-                <!-- 3. MANDAL -->
                 <div>
-                    <label class="block text-[11px] font-semibold tracking-wider text-slate-500 uppercase mb-1">3. Mandal / Block</label>
-                    <select id="mandalSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition" disabled>
+                    <label class="block text-[11px] font-bold tracking-wider text-slate-600 uppercase mb-1">Mandal / Block</label>
+                    <select id="mandalSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition shadow-sm" disabled>
                         <option value="">-- All Mandals --</option>
                     </select>
                 </div>
 
-                <!-- 4. DDO WISE -->
                 <div>
-                    <label class="block text-[11px] font-semibold tracking-wider text-blue-700 uppercase mb-1 flex items-center justify-between">
-                        <span>4. DDO Office / Code</span>
-                        <span class="text-[9px] bg-blue-100 text-blue-700 px-1 rounded font-bold">DDO Wise</span>
+                    <label class="block text-[11px] font-bold tracking-wider text-blue-700 uppercase mb-1 flex items-center justify-between">
+                        <span>DDO Office / Code</span>
+                        <span class="text-[9px] bg-blue-100 text-blue-700 px-1 rounded font-extrabold">DDO Wise</span>
                     </label>
-                    <select id="ddoSelect" class="w-full text-xs p-2.5 bg-blue-50/50 border border-blue-200 rounded-xl font-medium text-slate-800 focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition" disabled>
+                    <select id="ddoSelect" class="w-full text-xs p-2.5 bg-blue-50/60 border border-blue-200 rounded-xl font-semibold text-slate-800 focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition shadow-sm" disabled>
                         <option value="">-- All DDOs --</option>
                     </select>
                 </div>
 
-                <!-- 5. SCHOOL SELECT -->
                 <div>
-                    <label class="block text-[11px] font-semibold tracking-wider text-slate-500 uppercase mb-1">5. Select School</label>
-                    <select id="schoolSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition font-medium" disabled>
+                    <label class="block text-[11px] font-bold tracking-wider text-slate-600 uppercase mb-1">Select School</label>
+                    <select id="schoolSelect" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:bg-white focus:outline-none transition font-semibold shadow-sm" disabled>
                         <option value="">-- Select School --</option>
                     </select>
                 </div>
             </div>
 
-            <!-- SEARCH BAR & SUMMARY -->
+            <!-- SEARCH BAR -->
             <div class="mt-3.5 pt-3 border-t border-slate-100 flex flex-col sm:flex-row gap-2 items-center justify-between">
                 <div class="relative w-full sm:w-80">
-                    <input type="text" id="quickSearchInput" placeholder="Quick search by School Name or UDISE..." 
-                           class="w-full pl-8 pr-3 py-1.5 text-xs bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
-                    <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" id="quickSearchInput" placeholder="Search by School Name or UDISE..." 
+                           class="w-full pl-8 pr-3 py-2 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition shadow-sm">
+                    <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <div id="schoolSummaryBadge" class="text-xs text-slate-500 w-full sm:w-auto text-left sm:text-right font-medium">
                     No school selected
                 </div>
             </div>
 
-            <div id="fileUploadContainer" class="hidden mt-3 p-3 bg-amber-50 rounded-xl border border-amber-200">
-                <label class="block text-xs font-semibold text-amber-800 mb-1">Upload School Grants.xlsx / SMC Grants.csv:</label>
+            <div id="fileUploadContainer" class="hidden mt-3 p-3.5 bg-amber-50 rounded-xl border border-amber-200">
+                <label class="block text-xs font-bold text-amber-900 mb-1">Load School Grants.xlsx / SMC Grants.csv:</label>
                 <input type="file" id="csvFileInput" accept=".xlsx, .xls, .csv" class="w-full text-xs file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-amber-600 file:text-white hover:file:bg-amber-700 cursor-pointer">
             </div>
         </div>
 
-        <!-- AUTO-POPULATED DDO & VENDOR DETAILS -->
-        <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80">
+        <!-- STEP 2: EDITABLE HM/DDO & VENDOR BANK DETAILS (AUTO SYNCED) -->
+        <div class="bg-white/95 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md border border-slate-200/80 transition-all">
             <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
-                <div class="flex items-center gap-2">
-                    <span class="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-100 text-indigo-700 font-bold text-xs">2</span>
-                    <h2 class="text-sm sm:text-base font-bold text-slate-800">Auto-Populate HM / DDO & Vendor Particulars</h2>
+                <div class="flex items-center gap-2.5">
+                    <span class="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-600 to-purple-600 text-white font-bold text-xs shadow-sm">2</span>
+                    <h2 class="text-sm sm:text-base font-bold text-slate-800">Auto-Populate HM/DDO & Component Bank Particulars</h2>
                 </div>
-                <span class="text-[11px] text-slate-500">Auto-updates all reports</span>
+                <span class="text-[11px] text-indigo-600 font-semibold bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">Live Auto-Sync</span>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                <div class="bg-blue-50/50 p-2.5 rounded-xl border border-blue-100">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-blue-900 mb-1">HM / DDO Name (Auto-Populated)</label>
-                    <input type="text" id="inputDdoName" value="K.Sandhya Rani, M.A.B.Ed" oninput="syncInputs()" 
-                           class="w-full text-xs font-semibold text-slate-800 p-2 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <!-- Headmaster / DDO Name -->
+            <div class="mb-3.5 bg-gradient-to-r from-blue-50/70 to-indigo-50/50 p-3 rounded-xl border border-blue-200/70">
+                <label class="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1">HM / DDO Name (Auto-Populated & Fully Editable)</label>
+                <input type="text" id="inputDdoName" value="K.Sandhya Rani, M.A.B.Ed" oninput="syncInputs()" 
+                       class="w-full text-xs font-bold text-slate-800 p-2 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm">
+            </div>
+
+            <!-- 3 Columns for GEN, SC, ST Vendor & Bank Credentials -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <!-- GEN Component -->
+                <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/30 space-y-2">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-800 bg-emerald-100/80 px-2 py-0.5 rounded inline-block">1. GEN Component Details</span>
+                    <div>
+                        <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Vendor Name</label>
+                        <input type="text" id="inputVendorGen" value="M/S GEN SUPPLIERS" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-emerald-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Account No.</label>
+                            <input type="text" id="inputAccGen" value="456" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-emerald-200 rounded-lg font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">IFS Code</label>
+                            <input type="text" id="inputIfscGen" value="SBI, SBIN123" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-emerald-200 rounded-lg font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50/50">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Vendor (GEN Component)</label>
-                    <input type="text" id="inputVendorGen" value="M/S GEN SUPPLIERS" oninput="syncInputs()" 
-                           class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <!-- SC Component -->
+                <div class="p-3 rounded-xl border border-amber-200 bg-amber-50/30 space-y-2">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded inline-block">2. SC Component Details</span>
+                    <div>
+                        <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Vendor Name</label>
+                        <input type="text" id="inputVendorSc" value="M/S SC TRADERS" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-amber-200 rounded-lg focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Account No.</label>
+                            <input type="text" id="inputAccSc" value="789" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-amber-200 rounded-lg font-mono focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">IFS Code</label>
+                            <input type="text" id="inputIfscSc" value="SBI, SBIN456" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-amber-200 rounded-lg font-mono focus:ring-2 focus:ring-amber-500 focus:outline-none">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50/50">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Vendor (SC Component)</label>
-                    <input type="text" id="inputVendorSc" value="M/S SC TRADERS" oninput="syncInputs()" 
-                           class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
-                </div>
-
-                <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50/50">
-                    <label class="block text-[10px] font-bold uppercase tracking-wider text-slate-600 mb-1">Vendor (ST Component)</label>
-                    <input type="text" id="inputVendorSt" value="M/S ST ENTERPRISES" oninput="syncInputs()" 
-                           class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                <!-- ST Component -->
+                <div class="p-3 rounded-xl border border-purple-200 bg-purple-50/30 space-y-2">
+                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-purple-800 bg-purple-100/80 px-2 py-0.5 rounded inline-block">3. ST Component Details</span>
+                    <div>
+                        <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Vendor Name</label>
+                        <input type="text" id="inputVendorSt" value="M/S ST ENTERPRISES" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">Account No.</label>
+                            <input type="text" id="inputAccSt" value="123" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-purple-200 rounded-lg font-mono focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-600 mb-0.5 font-medium">IFS Code</label>
+                            <input type="text" id="inputIfscSt" value="SBI, SBINXYZ1" oninput="syncInputs()" class="w-full text-xs p-1.5 bg-white border border-purple-200 rounded-lg font-mono focus:ring-2 focus:ring-purple-500 focus:outline-none">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- 7 TABS (ANNEXURE-1 MERGED INTO PROCEEDINGS; DDO REPORT AT LAST TAB 7) -->
-        <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-1 text-xs">
-            <button onclick="switchReport(1)" id="tab1" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-blue-600 text-white shadow-sm transition">1. Proceedings (with Annexure)</button>
+        <!-- MOBILE-FRIENDLY HORIZONTALLY SCROLLABLE TABS -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs">
+            <button onclick="switchReport(1)" id="tab1" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md transition">1. Proceedings</button>
             <button onclick="switchReport(2)" id="tab2" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">2. Resolution (Model)</button>
             <button onclick="switchReport(3)" id="tab3" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">3. Receipts (x3)</button>
             <button onclick="switchReport(4)" id="tab4" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">4. UC (Single)</button>
@@ -208,7 +244,7 @@
     <!-- REPORT DISPLAY AREA (PRINTABLE) -->
     <div id="reportContainer" class="print-area max-w-5xl mx-auto bg-white p-6 sm:p-10 border shadow-lg text-black report-page">
         
-        <!-- REPORT 1: PROCEEDINGS (WITH EMBEDDED ANNEXURE AS REQUESTED) -->
+        <!-- REPORT 1: PROCEEDINGS -->
         <div id="report1" class="report-view space-y-3">
             <div class="text-center font-bold mb-3 uppercase">
                 <p contenteditable="true" class="editable-block inline-block">PROCEEDINGS OF THE GAZETTED HEADMASTER, <span class="rptDdoHeader">ZPHS AKKANNAPET</span></p>
@@ -232,12 +268,10 @@
             <p class="text-justify indent-6 text-xs">With reference to the 1st cited above, the State Project Director, TG, Hyderabad has instructed for implementing the Samagra Shiksha Scheme through the SNA-SPARSH Platform w.e.f. <span contenteditable="true" class="editable">01.04.2026</span> through PAO/Treasuries in IFMIS portal.</p>
             <p class="text-justify indent-6 text-xs">With reference to the 2nd citation above, the budget has been released under Samagra Shiksha, SNA-SPARSH via IFMIS for the activity of <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span>. Vide reference 3rd cited, the activity-in-charge has conducted the activity through the committee resolution and submitted the expenditure particulars as per the prescribed norms.</p>
             
-            <!-- Exact Sentence From Screenshot -->
             <p class="text-justify indent-6 text-xs leading-relaxed">
-                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below[cite: 3].
+                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below.
             </p>
 
-            <!-- Table 1: Intervention Component Structure (Screenshot Model) -->
             <table class="my-2 text-[9.5pt]">
                 <tr class="bg-gray-50 font-bold">
                     <th>Major component Name</th>
@@ -253,7 +287,6 @@
                 </tr>
             </table>
             
-            <!-- Table 2: Component Table with -NVN HOA Codes (Screenshot Model) -->
             <table class="my-2 text-[9.5pt]">
                 <tr class="bg-gray-50 font-bold">
                     <th style="width: 40px;">Sl.No</th>
@@ -293,7 +326,7 @@
                 </tr>
             </table>
 
-            <!-- Table 3: Embedded Annexure Vendor Particulars (Screenshot Model) -->
+            <!-- Embedded Annexure Table -->
             <div class="my-2">
                 <p class="text-center font-bold text-xs uppercase underline mb-1">Annexure</p>
                 <table class="w-full text-[9.5pt]">
@@ -313,9 +346,9 @@
                         <tr>
                             <td class="font-bold">GEN</td>
                             <td>1</td>
-                            <td class="auto-vendor-gen text-left pl-2">M/S GEN SUPPLIERS</td>
-                            <td contenteditable="true" class="editable font-mono">456</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBIN123</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-gen text-left pl-2">M/S GEN SUPPLIERS</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-gen">456</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-gen">SBI, SBIN123</span></td>
                             <td>-</td>
                             <td class="rptGenPresent font-bold">18,000</td>
                             <td></td>
@@ -323,9 +356,9 @@
                         <tr>
                             <td class="font-bold">SC</td>
                             <td>2</td>
-                            <td class="auto-vendor-sc text-left pl-2">M/S SC TRADERS</td>
-                            <td contenteditable="true" class="editable font-mono">789</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBIN456</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-sc text-left pl-2">M/S SC TRADERS</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-sc">789</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-sc">SBI, SBIN456</span></td>
                             <td>-</td>
                             <td class="rptSCPresent font-bold">4,250</td>
                             <td></td>
@@ -333,9 +366,9 @@
                         <tr>
                             <td class="font-bold">ST</td>
                             <td>3</td>
-                            <td class="auto-vendor-st text-left pl-2">M/S ST ENTERPRISES</td>
-                            <td contenteditable="true" class="editable font-mono">123</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBINXYZ1</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-st text-left pl-2">M/S ST ENTERPRISES</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-st">123</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-st">SBI, SBINXYZ1</span></td>
                             <td>-</td>
                             <td class="rptSTPresent font-bold">2,750</td>
                             <td></td>
@@ -350,25 +383,24 @@
             </div>
             
             <p class="text-justify indent-6 text-xs leading-relaxed">
-                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure[cite: 3].
+                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure.
             </p>
 
-            <!-- Copy to and Signature (Screenshot Model) -->
             <div class="mt-6 flex justify-between text-xs items-start">
                 <div class="space-y-1">
                     <p class="font-bold">Copy to</p>
-                    <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information[cite: 3]</p>
-                    <p>2. STO Concerned[cite: 3]</p>
-                    <p>3. Office copy[cite: 3]</p>
+                    <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information</p>
+                    <p>2. STO Concerned</p>
+                    <p>3. Office copy</p>
                 </div>
                 <div class="text-center space-y-1 pr-4">
                     <p class="font-bold text-sm">Gazetted Headmaster</p>
-                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span>[cite: 3]</p>
+                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span></p>
                 </div>
             </div>
         </div>
 
-        <!-- REPORT 2: RESOLUTION (MODEL REPORT - DDO NAME REMOVED FROM FOOTER AS REQUESTED) -->
+        <!-- REPORT 2: RESOLUTION -->
         <div id="report2" class="report-view hidden single-page-fit space-y-3">
             <div class="text-center font-bold uppercase space-y-0.5">
                 <h1 class="text-base underline tracking-wider">RESOLUTION</h1>
@@ -386,18 +418,18 @@
             </h2>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme[cite: 2].
+                The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme.
             </p>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines[cite: 2].
+                Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines.
             </p>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure[cite: 2].
+                It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure.
             </p>
 
-            <!-- Embedded Annexure Table -->
+            <!-- Annexure Table -->
             <div class="my-2">
                 <p class="text-center font-bold text-xs underline mb-1">Annexure</p>
                 <table class="w-full text-xs">
@@ -417,9 +449,9 @@
                         <tr>
                             <td class="font-bold">GEN</td>
                             <td>1</td>
-                            <td class="auto-vendor-gen font-medium">M/S GEN SUPPLIERS</td>
-                            <td contenteditable="true" class="editable font-mono">456</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBIN123</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-gen font-medium">M/S GEN SUPPLIERS</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-gen">456</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-gen">SBI, SBIN123</span></td>
                             <td>-</td>
                             <td class="rptGenPresent font-bold">18,000</td>
                             <td></td>
@@ -427,9 +459,9 @@
                         <tr>
                             <td class="font-bold">SC</td>
                             <td>2</td>
-                            <td class="auto-vendor-sc font-medium">M/S SC TRADERS</td>
-                            <td contenteditable="true" class="editable font-mono">789</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBIN456</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-sc font-medium">M/S SC TRADERS</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-sc">789</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-sc">SBI, SBIN456</span></td>
                             <td>-</td>
                             <td class="rptSCPresent font-bold">4,250</td>
                             <td></td>
@@ -437,9 +469,9 @@
                         <tr>
                             <td class="font-bold">ST</td>
                             <td>3</td>
-                            <td class="auto-vendor-st font-medium">M/S ST ENTERPRISES</td>
-                            <td contenteditable="true" class="editable font-mono">123</td>
-                            <td contenteditable="true" class="editable font-mono">SBI, SBINXYZ1</td>
+                            <td><span contenteditable="true" class="editable auto-vendor-st font-medium">M/S ST ENTERPRISES</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-acc-st">123</span></td>
+                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-st">SBI, SBINXYZ1</span></td>
                             <td>-</td>
                             <td class="rptSTPresent font-bold">2,750</td>
                             <td></td>
@@ -454,7 +486,7 @@
             </div>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs[cite: 2].
+                It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs.
             </p>
 
             <!-- 10 Participating Staff Signatures -->
@@ -474,15 +506,15 @@
                 </div>
             </div>
 
-            <!-- DDO Name Removed From Footer As Requested: Clean Signature Lines -->
+            <!-- Clean Signature Lines Without Names -->
             <div class="flex justify-between pt-8 text-xs text-center font-bold">
                 <div class="space-y-1">
                     <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Senior Teacher[cite: 2]</p>
+                    <p>Signature of the Senior Teacher</p>
                 </div>
                 <div class="space-y-1">
                     <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Headmaster[cite: 2]</p>
+                    <p>Signature of the Headmaster</p>
                 </div>
             </div>
         </div>
@@ -492,11 +524,11 @@
             <!-- Receipt GEN -->
             <div class="receipt-block page-break pb-8">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline" contenteditable="true" class="editable-block">ADVANCE STAMPED RECEIPT (GEN COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-gen">M/S GEN SUPPLIERS</span></p>
-                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold">456</span></p>
-                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold">SBI, SBIN123</span></p>
+                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-gen">456</span></p>
+                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold font-mono auto-ifsc-gen">SBI, SBIN123</span></p>
                 </div>
                 <div class="flex justify-between mt-6 items-end text-xs">
                     <div class="border-2 border-black p-4 text-center w-32 h-24 flex items-center justify-center bg-white/80" contenteditable="true">Affix 1/-<br>Revenue Stamp</div>
@@ -515,11 +547,11 @@
             <!-- Receipt SC -->
             <div class="receipt-block page-break pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (SC COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-sc">M/S SC TRADERS</span></p>
-                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold">789</span></p>
-                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold">SBI, SBIN456</span></p>
+                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-sc">789</span></p>
+                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold font-mono auto-ifsc-sc">SBI, SBIN456</span></p>
                 </div>
                 <div class="flex justify-between mt-6 items-end text-xs">
                     <div class="border-2 border-black p-4 text-center w-32 h-24 flex items-center justify-center bg-white/80" contenteditable="true">Affix 1/-<br>Revenue Stamp</div>
@@ -538,11 +570,11 @@
             <!-- Receipt ST -->
             <div class="receipt-block pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (ST COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-st">M/S ST ENTERPRISES</span></p>
-                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold">123</span></p>
-                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold">SBI, SBINXYZ1</span></p>
+                    <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-st">123</span></p>
+                    <p>3. Bank Name & IFSC Code: <span contenteditable="true" class="editable font-bold font-mono auto-ifsc-st">SBI, SBINXYZ1</span></p>
                 </div>
                 <div class="flex justify-between mt-6 items-end text-xs">
                     <div class="border-2 border-black p-4 text-center w-32 h-24 flex items-center justify-center bg-white/80" contenteditable="true">Affix 1/-<br>Revenue Stamp</div>
@@ -565,7 +597,7 @@
             <p class="text-center">(For the financial year 2026-27)</p>
             <p class="text-center font-bold uppercase"><span contenteditable="true" class="editable rptSchoolName">ZPHS AKKANNAPET</span> (DDO Code: <span contenteditable="true" class="editable rptDdoCode">18050308005</span>), Mdl <span contenteditable="true" class="editable rptMandal">AKKANNAPETA</span>, Dist.<span contenteditable="true" class="editable rptDist">SIDDIPET</span></p>
             <p class="text-center font-bold uppercase">UNDER SNA SPARSH ACCOUNT <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span></p>
-            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>)[cite: 1].</p>
+            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>).</p>
             <table class="my-6">
                 <tr class="bg-gray-100 font-bold"><th>S.No</th><th>Category</th><th>Amount Sanctioned</th><th>Already Utilized</th><th>Present Utilisation</th><th>Balance</th></tr>
                 <tr><td>1</td><td>GEN</td><td><span class="rptGen">18,000</span></td><td><span class="rptGenAlready">0</span></td><td><span class="rptGenPresent">18,000</span></td><td><span class="rptGenBal">0</span></td></tr>
@@ -644,7 +676,7 @@
             </table>
         </div>
 
-        <!-- REPORT 7: DDO CODE WISE ALL GRANTS RELEASED REPORT (FINAL POSITION) -->
+        <!-- REPORT 7: DDO CODE WISE ALL GRANTS RELEASED REPORT -->
         <div id="report7" class="report-view hidden space-y-4">
             <div class="text-center font-bold mb-3 uppercase">
                 <h2 class="text-base font-bold underline">SAMAGRA SHIKSHA - SNA SPARSH FY 2026-27</h2>
@@ -747,10 +779,28 @@
             const vSc = document.getElementById('inputVendorSc').value || "M/S SC TRADERS";
             const vSt = document.getElementById('inputVendorSt').value || "M/S ST ENTERPRISES";
 
+            const accGen = document.getElementById('inputAccGen').value || "456";
+            const ifscGen = document.getElementById('inputIfscGen').value || "SBI, SBIN123";
+
+            const accSc = document.getElementById('inputAccSc').value || "789";
+            const ifscSc = document.getElementById('inputIfscSc').value || "SBI, SBIN456";
+
+            const accSt = document.getElementById('inputAccSt').value || "123";
+            const ifscSt = document.getElementById('inputIfscSt').value || "SBI, SBINXYZ1";
+
             document.querySelectorAll('.auto-ddo-name').forEach(el => el.innerText = ddo);
             document.querySelectorAll('.auto-vendor-gen').forEach(el => el.innerText = vGen);
             document.querySelectorAll('.auto-vendor-sc').forEach(el => el.innerText = vSc);
             document.querySelectorAll('.auto-vendor-st').forEach(el => el.innerText = vSt);
+
+            document.querySelectorAll('.auto-acc-gen').forEach(el => el.innerText = accGen);
+            document.querySelectorAll('.auto-ifsc-gen').forEach(el => el.innerText = ifscGen);
+
+            document.querySelectorAll('.auto-acc-sc').forEach(el => el.innerText = accSc);
+            document.querySelectorAll('.auto-ifsc-sc').forEach(el => el.innerText = ifscSc);
+
+            document.querySelectorAll('.auto-acc-st').forEach(el => el.innerText = accSt);
+            document.querySelectorAll('.auto-ifsc-st').forEach(el => el.innerText = ifscSt);
         }
 
         function autoCalculate() {
@@ -812,7 +862,7 @@
                 if (rpt) rpt.classList.add('hidden');
                 const tab = document.getElementById(`tab${i}`);
                 if (tab) {
-                    tab.classList.remove('bg-blue-600', 'text-white', 'shadow-sm', 'bg-purple-700');
+                    tab.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md', 'bg-purple-700');
                     tab.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
                 }
             }
@@ -820,9 +870,9 @@
             if (activeTab) {
                 activeTab.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
                 if (num === 7) {
-                    activeTab.classList.add('bg-purple-700', 'text-white', 'shadow-sm');
+                    activeTab.classList.add('bg-purple-700', 'text-white', 'shadow-md');
                 } else {
-                    activeTab.classList.add('bg-blue-600', 'text-white', 'shadow-sm');
+                    activeTab.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md');
                 }
             }
             const activeRpt = document.getElementById(`report${num}`);
@@ -839,7 +889,7 @@
             document.querySelectorAll('.rptDate').forEach(el => el.innerText = formattedDate);
         }
 
-        // MULTI-SHEET EXCEL & CSV DATA LOADER
+        // UNIFIED DATA LOADER
         function initDataLoader() {
             fetch("School Grants.xlsx")
                 .then(res => {
@@ -899,7 +949,7 @@
 
         function showUploadFallback() {
             document.getElementById('dataStatus').innerText = "Upload File";
-            document.getElementById('dataStatus').className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200";
+            document.getElementById('dataStatus').className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 shadow-sm";
             document.getElementById('fileUploadContainer').classList.remove('hidden');
             document.getElementById('csvFileInput').addEventListener('change', function(e) {
                 const file = e.target.files[0];
@@ -925,7 +975,7 @@
 
         function finishLoading() {
             document.getElementById('dataStatus').innerText = `● Loaded ${allData.length.toLocaleString()} records`;
-            document.getElementById('dataStatus').className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200";
+            document.getElementById('dataStatus').className = "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 shadow-sm";
             document.getElementById('fileUploadContainer').classList.add('hidden');
             populateGrantTypes();
             populateDistricts();
@@ -1145,7 +1195,6 @@
             document.querySelectorAll('.rptGrantTypeTitle').forEach(el => el.innerText = titleUpper);
             document.querySelectorAll('.rptGrantSubAct').forEach(el => el.innerText = subAct);
 
-            // Sub Component and Activity mapping
             if (isCRC) {
                 document.querySelectorAll('.rptMajorSubComp').forEach(el => el.innerText = "1.5.3 - Academic support through BRC/URC/CRC");
                 document.querySelectorAll('.rptMajorActivity').forEach(el => el.innerText = "1.5.3.1. - Provision for CRCs");
@@ -1176,8 +1225,8 @@
             document.querySelectorAll('.rptTotal').forEach(el => el.innerText = s.t.toLocaleString('en-IN'));
 
             document.getElementById('schoolSummaryBadge').innerHTML = `
-                <span class="inline-flex items-center gap-1.5 bg-blue-50 text-blue-800 px-2.5 py-1 rounded-lg border border-blue-200">
-                    <span class="font-bold">${isSports ? '⚽ ' : ''}${s.n}</span> | <span class="text-purple-700 font-semibold">${s.gt}</span> | ₹${s.t.toLocaleString('en-IN')}
+                <span class="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-900 px-3 py-1 rounded-xl border border-blue-200 shadow-sm">
+                    <span class="font-extrabold">${isSports ? '⚽ ' : ''}${s.n}</span> | <span class="text-purple-700 font-bold">${s.gt}</span> | ₹${s.t.toLocaleString('en-IN')}
                 </span>
             `;
 
