@@ -10,25 +10,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tinos:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
-        .report-page { font-family: 'Tinos', 'Times New Roman', Times, serif; font-size: 10.5pt; line-height: 1.35; color: #000; }
+        .report-page { font-family: 'Tinos', 'Times New Roman', Times, serif; font-size: 10pt; line-height: 1.35; color: #000; }
         .editable { background-color: #fef08a; border-bottom: 1px dashed #2563eb; padding: 0 4px; outline: none; border-radius: 2px; display: inline-block; min-width: 20px; }
         .editable:focus { background-color: #fef9c3; border-bottom: 2px solid #1d4ed8; }
         .editable-block { background-color: #fef08a; border: 1px dashed #2563eb; padding: 2px 6px; outline: none; border-radius: 3px; }
         .editable-block:focus { background-color: #fef9c3; border: 1px solid #1d4ed8; }
         .report-view { position: relative; }
         table { border-collapse: collapse; width: 100%; background: transparent; }
-        th, td { border: 1px solid #000; padding: 3.5px 4px; text-align: center; }
+        th, td { border: 1px solid #000; padding: 3px 4px; text-align: center; }
         .text-justify { text-align: justify; }
         .page-break { page-break-after: always; break-after: page; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
+        /* A4 Page Dimensions */
+        .a4-page-fit {
+            box-sizing: border-box;
+            width: 100%;
+            max-width: 210mm;
+            margin: 0 auto;
+        }
+
         @media print {
+            @page {
+                size: A4 portrait;
+                margin: 8mm 10mm;
+            }
             .no-print { display: none !important; }
-            .print-area { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; padding: 0 !important; }
+            .print-area { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; padding: 0 !important; max-width: 100% !important; }
             .editable, .editable-block { background-color: transparent !important; border: none !important; border-bottom: none !important; padding: 0 !important; }
             body { background: #fff !important; }
-            .single-page-fit { min-height: 98vh; overflow: hidden; page-break-inside: avoid; }
+            .a4-page-fit {
+                max-height: 280mm !important;
+                overflow: hidden !important;
+                page-break-inside: avoid !important;
+                page-break-after: avoid !important;
+            }
         }
     </style>
 </head>
@@ -77,7 +94,7 @@
                 </div>
             </div>
 
-            <!-- FILTERS GRID INCLUDING GCEAC GRANT -->
+            <!-- FILTERS GRID -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div>
                     <label class="block text-[11px] font-bold tracking-wider text-purple-700 uppercase mb-1">Grant Type</label>
@@ -151,14 +168,12 @@
                 <span class="text-[11px] text-indigo-600 font-semibold bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">Live Auto-Sync</span>
             </div>
 
-            <!-- Headmaster / DDO Name -->
             <div class="mb-3.5 bg-gradient-to-r from-blue-50/70 to-indigo-50/50 p-3 rounded-xl border border-blue-200/70">
                 <label class="block text-[10px] font-extrabold uppercase tracking-wider text-blue-900 mb-1">HM / DDO Name (Auto-Populated & Fully Editable)</label>
                 <input type="text" id="inputDdoName" value="K.Sandhya Rani, M.A.B.Ed" oninput="syncInputs()" 
                        class="w-full text-xs font-bold text-slate-800 p-2 bg-white border border-blue-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none shadow-sm">
             </div>
 
-            <!-- 3 Columns for GEN, SC, ST Vendor & Bank Credentials -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <!-- GEN Component -->
                 <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/30 space-y-2">
@@ -237,21 +252,21 @@
     </main>
 
     <!-- REPORT DISPLAY AREA (PRINTABLE) -->
-    <div id="reportContainer" class="print-area max-w-5xl mx-auto bg-white p-6 sm:p-10 border shadow-lg text-black report-page">
+    <div id="reportContainer" class="print-area max-w-5xl mx-auto bg-white p-4 sm:p-8 border shadow-lg text-black report-page">
         
         <!-- REPORT 1: PROCEEDINGS -->
-        <div id="report1" class="report-view space-y-3">
-            <div class="text-center font-bold mb-3 uppercase">
-                <p contenteditable="true" class="editable-block inline-block">PROCEEDINGS OF THE GAZETTED HEADMASTER, <span class="rptDdoHeader">ZPHS AKKANNAPET</span></p>
-                <p class="font-normal normal-case mt-0.5">Present: <span contenteditable="true" class="editable font-bold auto-ddo-name">K.Sandhya Rani, M.A.B.Ed</span></p>
+        <div id="report1" class="report-view a4-page-fit">
+            <div class="text-center font-bold mb-2 uppercase">
+                <p contenteditable="true" class="editable-block inline-block text-sm">PROCEEDINGS OF THE GAZETTED HEADMASTER, <span class="rptDdoHeader">ZPHS AKKANNAPET</span></p>
+                <p class="font-normal normal-case text-xs mt-0.5">Present: <span contenteditable="true" class="editable font-bold auto-ddo-name">K.Sandhya Rani, M.A.B.Ed</span></p>
             </div>
-            <div class="flex justify-between mb-3 text-xs sm:text-sm">
+            <div class="flex justify-between mb-2 text-xs">
                 <p>Proc. No. <span contenteditable="true" class="editable">01/PMSHRI/2026-27</span></p>
                 <p>Date. <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p>
             </div>
-            <table class="w-full text-left border-none text-xs" style="border:none;">
-                <tr style="border:none;"><td style="border:none; padding: 1.5px; width: 40px; vertical-align: top;"><strong>Sub:</strong></td><td style="border:none; padding: 1.5px; text-align: justify;">SMC- SNA SPARSH- Samagra Shiksha Funds - Sanction of expenditure in the Financial year (FY)-2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span> orders Issued -Reg.</td></tr>
-                <tr style="border:none;"><td style="border:none; padding: 1.5px; width: 40px; vertical-align: top;"><strong>Ref:</strong></td><td style="border:none; padding: 1.5px; text-align: justify;">
+            <table class="w-full text-left border-none text-[9pt]" style="border:none;">
+                <tr style="border:none;"><td style="border:none; padding: 1px; width: 35px; vertical-align: top;"><strong>Sub:</strong></td><td style="border:none; padding: 1px; text-align: justify;">SMC- SNA SPARSH- Samagra Shiksha Funds - Sanction of expenditure in the Financial year (FY)-2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span> orders Issued -Reg.</td></tr>
+                <tr style="border:none;"><td style="border:none; padding: 1px; width: 35px; vertical-align: top;"><strong>Ref:</strong></td><td style="border:none; padding: 1px; text-align: justify;">
                     1. State project Director, SS, TG, Hyderabad Circular Memo No.TF/619/FCI/SNA SPARSH-SS/2026. Dt. <span contenteditable="true" class="editable">03.07.2026</span><br>
                     2. State project Director, SS, TG, Hyderabad. Prc.RCNo.2191/CSG/TSS/PLG/T7/2026-1, Date. <span contenteditable="true" class="editable">07/08/2026</span><br>
                     3. School Resolution and Committee Recommendations Dated: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span><br>
@@ -259,15 +274,15 @@
                 </td></tr>
             </table>
             
-            <p class="font-bold mt-2 text-xs" contenteditable="true" class="editable-block inline-block">ORDERS:</p>
-            <p class="text-justify indent-6 text-xs">With reference to the 1st cited above, the State Project Director, TG, Hyderabad has instructed for implementing the Samagra Shiksha Scheme through the SNA-SPARSH Platform w.e.f. <span contenteditable="true" class="editable">01.04.2026</span> through PAO/Treasuries in IFMIS portal.</p>
-            <p class="text-justify indent-6 text-xs">With reference to the 2nd citation above, the budget has been released under Samagra Shiksha, SNA-SPARSH via IFMIS for the activity of <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span>. Vide reference 3rd cited, the activity-in-charge has conducted the activity through the committee resolution and submitted the expenditure particulars as per the prescribed norms.</p>
+            <p class="font-bold mt-1 text-[9pt]" contenteditable="true" class="editable-block inline-block">ORDERS:</p>
+            <p class="text-justify indent-6 text-[9pt] leading-tight">With reference to the 1st cited above, the State Project Director, TG, Hyderabad has instructed for implementing the Samagra Shiksha Scheme through the SNA-SPARSH Platform w.e.f. <span contenteditable="true" class="editable">01.04.2026</span> through PAO/Treasuries in IFMIS portal.</p>
+            <p class="text-justify indent-6 text-[9pt] leading-tight mt-0.5">With reference to the 2nd citation above, the budget has been released under Samagra Shiksha, SNA-SPARSH via IFMIS for the activity of <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span>. Vide reference 3rd cited, the activity-in-charge has conducted the activity through the committee resolution and submitted the expenditure particulars as per the prescribed norms.</p>
             
-            <p class="text-justify indent-6 text-xs leading-relaxed">
-                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below[cite: 3].
+            <p class="text-justify indent-6 text-[9pt] leading-tight mt-0.5">
+                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below.
             </p>
 
-            <table class="my-2 text-[9.5pt]">
+            <table class="my-1.5 text-[8.5pt]">
                 <tr class="bg-gray-50 font-bold">
                     <th>Major component Name</th>
                     <th>Sub Component Name</th>
@@ -282,11 +297,11 @@
                 </tr>
             </table>
             
-            <table class="my-2 text-[9.5pt]">
+            <table class="my-1.5 text-[8.5pt]">
                 <tr class="bg-gray-50 font-bold">
-                    <th style="width: 40px;">Sl.No</th>
+                    <th style="width: 35px;">Sl.No</th>
                     <th>Name of the Head of Account</th>
-                    <th style="width: 80px;">Category</th>
+                    <th style="width: 70px;">Category</th>
                     <th>Sanctioned</th>
                     <th>Already utilised</th>
                     <th>Present Utilisation</th>
@@ -322,26 +337,26 @@
             </table>
 
             <!-- Embedded Annexure Table -->
-            <div class="my-2">
-                <p class="text-center font-bold text-xs uppercase underline mb-1">Annexure</p>
-                <table class="w-full text-[9.5pt]">
+            <div class="my-1">
+                <p class="text-center font-bold text-[9pt] uppercase underline mb-0.5">Annexure</p>
+                <table class="w-full text-[8.5pt]">
                     <thead>
                         <tr class="bg-gray-50 font-bold">
-                            <th style="width: 65px;">Category</th>
-                            <th style="width: 35px;">S.No</th>
+                            <th style="width: 60px;">Category</th>
+                            <th style="width: 30px;">S.No</th>
                             <th>Vendor Name</th>
                             <th>Account No.</th>
                             <th>IFS Code</th>
-                            <th style="width: 65px;">GST Deduction</th>
-                            <th style="width: 80px;">Net amount</th>
-                            <th style="width: 65px;">Remarks</th>
+                            <th style="width: 60px;">GST Deduction</th>
+                            <th style="width: 75px;">Net amount</th>
+                            <th style="width: 60px;">Remarks</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="font-bold">GEN</td>
                             <td>1</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-gen text-left pl-2">M/S GEN SUPPLIERS</span></td>
+                            <td><span contenteditable="true" class="editable auto-vendor-gen text-left pl-1">M/S GEN SUPPLIERS</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-acc-gen">456</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-ifsc-gen">SBI, SBIN123</span></td>
                             <td>-</td>
@@ -351,7 +366,7 @@
                         <tr>
                             <td class="font-bold">SC</td>
                             <td>2</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-sc text-left pl-2">M/S SC TRADERS</span></td>
+                            <td><span contenteditable="true" class="editable auto-vendor-sc text-left pl-1">M/S SC TRADERS</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-acc-sc">789</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-ifsc-sc">SBI, SBIN456</span></td>
                             <td>-</td>
@@ -361,7 +376,7 @@
                         <tr>
                             <td class="font-bold">ST</td>
                             <td>3</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-st text-left pl-2">M/S ST ENTERPRISES</span></td>
+                            <td><span contenteditable="true" class="editable auto-vendor-st text-left pl-1">M/S ST ENTERPRISES</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-acc-st">123</span></td>
                             <td><span contenteditable="true" class="editable font-mono auto-ifsc-st">SBI, SBINXYZ1</span></td>
                             <td>-</td>
@@ -377,172 +392,188 @@
                 </table>
             </div>
             
-            <p class="text-justify indent-6 text-xs leading-relaxed">
-                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure[cite: 3].
+            <p class="text-justify indent-6 text-[8.5pt] leading-tight mt-1 mb-2">
+                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure.
             </p>
 
-            <div class="mt-6 flex justify-between text-xs items-start">
-                <div class="space-y-1">
-                    <p class="font-bold">Copy to</p>
-                    <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information[cite: 3]</p>
-                    <p>2. STO Concerned[cite: 3]</p>
-                    <p>3. Office copy[cite: 3]</p>
+            <!-- Bottom Left Stacked: Enclosures then Copy To; Bottom Right: Signature -->
+            <div class="mt-2 pt-1 flex justify-between items-end text-[8.5pt]">
+                <!-- Bottom Left Only: Enclosures first, then Copy to directly beneath -->
+                <div class="space-y-2 text-left">
+                    <!-- Element 1: Enclosures -->
+                    <div>
+                        <p class="font-bold uppercase underline">Enclosures:</p>
+                        <ul class="list-disc list-inside space-y-0 text-[8.5pt] leading-tight text-gray-900 mt-0.5">
+                            <li>Original Bills / Vouchers</li>
+                            <li>Advance Stamp Receipt</li>
+                            <li>Bank Passbook Copy</li>
+                            <li>Stock Entry (if required)</li>
+                            <li>Utilization Certificate (if required)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Element 2: Copy to directly below Enclosures -->
+                    <div class="space-y-0 text-[8.5pt] leading-tight pt-1">
+                        <p class="font-bold">Copy to</p>
+                        <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information</p>
+                        <p>2. STO Concerned</p>
+                        <p>3. Office copy</p>
+                    </div>
                 </div>
-                <div class="text-center space-y-1 pr-4">
-                    <p class="font-bold text-sm">Gazetted Headmaster</p>
-                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span>[cite: 3]</p>
+
+                <!-- Bottom Right: Headmaster Signature -->
+                <div class="text-center space-y-1 pr-3 pb-1">
+                    <p class="font-bold text-xs">Gazetted Headmaster</p>
+                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span></p>
                 </div>
             </div>
         </div>
 
         <!-- REPORT 2: RESOLUTION -->
-        <div id="report2" class="report-view hidden single-page-fit space-y-3">
-            <div class="text-center font-bold uppercase space-y-0.5">
-                <h1 class="text-base underline tracking-wider">RESOLUTION</h1>
-                <p class="text-xs">SMC <span class="rptSchoolName font-bold">ZPHS AKKANNAPET</span></p>
-                <p class="text-xs">MANDAL: <span class="rptMandal font-bold">AKKANNAPETA</span>, DISTRICT: <span class="rptDist font-bold">SIDDIPET</span></p>
-            </div>
+        <div id="report2" class="report-view hidden a4-page-fit space-y-2.5">
+            <div>
+                <div class="text-center font-bold uppercase space-y-0.5">
+                    <h1 class="text-base underline tracking-wider">RESOLUTION</h1>
+                    <p class="text-xs">SMC <span class="rptSchoolName font-bold">ZPHS AKKANNAPET</span></p>
+                    <p class="text-xs">MANDAL: <span class="rptMandal font-bold">AKKANNAPETA</span>, DISTRICT: <span class="rptDist font-bold">SIDDIPET</span></p>
+                </div>
 
-            <div class="flex justify-between font-bold text-xs border-b border-black pb-1">
-                <p>Udise Code: <span class="rptUdise editable" contenteditable="true">36180700907</span></p>
-                <p>Dated: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p>
-            </div>
+                <div class="flex justify-between font-bold text-xs border-b border-black pb-1 my-2">
+                    <p>Udise Code: <span class="rptUdise editable" contenteditable="true">36180700907</span></p>
+                    <p>Dated: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p>
+                </div>
 
-            <h2 class="text-center font-bold underline text-xs uppercase my-1.5">
-                <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span> EXPENDITURE RESOLUTION
-            </h2>
+                <h2 class="text-center font-bold underline text-xs uppercase my-1.5">
+                    <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span> EXPENDITURE RESOLUTION
+                </h2>
 
-            <p class="text-justify indent-8 text-xs leading-relaxed">
-                The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme[cite: 2].
-            </p>
+                <p class="text-justify indent-8 text-xs leading-relaxed">
+                    The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme.
+                </p>
 
-            <p class="text-justify indent-8 text-xs leading-relaxed">
-                Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines[cite: 2].
-            </p>
+                <p class="text-justify indent-8 text-xs leading-relaxed mt-1">
+                    Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines.
+                </p>
 
-            <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure[cite: 2].
-            </p>
+                <p class="text-justify indent-8 text-xs leading-relaxed mt-1">
+                    It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure.
+                </p>
 
-            <!-- Annexure Table -->
-            <div class="my-2">
-                <p class="text-center font-bold text-xs underline mb-1">Annexure</p>
-                <table class="w-full text-xs">
-                    <thead>
-                        <tr class="bg-gray-100 font-bold">
-                            <th style="width: 70px;">Category</th>
-                            <th style="width: 35px;">S.No</th>
-                            <th>Vendor Name</th>
-                            <th>Account No.</th>
-                            <th>IFS Code</th>
-                            <th style="width: 60px;">GST Deduction</th>
-                            <th style="width: 75px;">Net amount</th>
-                            <th>Remarks</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="font-bold">GEN</td>
-                            <td>1</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-gen font-medium">M/S GEN SUPPLIERS</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-acc-gen">456</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-gen">SBI, SBIN123</span></td>
-                            <td>-</td>
-                            <td class="rptGenPresent font-bold">18,000</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">SC</td>
-                            <td>2</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-sc font-medium">M/S SC TRADERS</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-acc-sc">789</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-sc">SBI, SBIN456</span></td>
-                            <td>-</td>
-                            <td class="rptSCPresent font-bold">4,250</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold">ST</td>
-                            <td>3</td>
-                            <td><span contenteditable="true" class="editable auto-vendor-st font-medium">M/S ST ENTERPRISES</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-acc-st">123</span></td>
-                            <td><span contenteditable="true" class="editable font-mono auto-ifsc-st">SBI, SBINXYZ1</span></td>
-                            <td>-</td>
-                            <td class="rptSTPresent font-bold">2,750</td>
-                            <td></td>
-                        </tr>
-                        <tr class="font-bold bg-gray-50">
-                            <td colspan="6" class="text-right pr-3 uppercase">TOTAL:</td>
-                            <td class="rptTotalPresent font-bold">25,000</td>
-                            <td>-</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+                <!-- Annexure Table -->
+                <div class="my-2">
+                    <p class="text-center font-bold text-xs underline mb-1">Annexure</p>
+                    <table class="w-full text-xs">
+                        <thead>
+                            <tr class="bg-gray-100 font-bold">
+                                <th style="width: 70px;">Category</th>
+                                <th style="width: 35px;">S.No</th>
+                                <th>Vendor Name</th>
+                                <th>Account No.</th>
+                                <th>IFS Code</th>
+                                <th style="width: 60px;">GST Deduction</th>
+                                <th style="width: 75px;">Net amount</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">GEN</td>
+                                <td>1</td>
+                                <td><span contenteditable="true" class="editable auto-vendor-gen font-medium">M/S GEN SUPPLIERS</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-acc-gen">456</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-ifsc-gen">SBI, SBIN123</span></td>
+                                <td>-</td>
+                                <td class="rptGenPresent font-bold">18,000</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">SC</td>
+                                <td>2</td>
+                                <td><span contenteditable="true" class="editable auto-vendor-sc font-medium">M/S SC TRADERS</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-acc-sc">789</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-ifsc-sc">SBI, SBIN456</span></td>
+                                <td>-</td>
+                                <td class="rptSCPresent font-bold">4,250</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">ST</td>
+                                <td>3</td>
+                                <td><span contenteditable="true" class="editable auto-vendor-st font-medium">M/S ST ENTERPRISES</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-acc-st">123</span></td>
+                                <td><span contenteditable="true" class="editable font-mono auto-ifsc-st">SBI, SBINXYZ1</span></td>
+                                <td>-</td>
+                                <td class="rptSTPresent font-bold">2,750</td>
+                                <td></td>
+                            </tr>
+                            <tr class="font-bold bg-gray-50">
+                                <td colspan="6" class="text-right pr-3 uppercase">TOTAL:</td>
+                                <td class="rptTotalPresent font-bold">25,000</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs[cite: 2].
-            </p>
+                <p class="text-justify indent-8 text-xs leading-relaxed mt-1">
+                    It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs.
+                </p>
 
-            <div class="pt-1">
-                <p class="font-bold text-xs border-b border-black pb-0.5 mb-1.5">Signatures of the Participating Staff:</p>
-                <div class="grid grid-cols-2 gap-x-8 gap-y-1.5 text-xs">
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>1. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>6. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>2. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>7. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>3. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>8. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>4. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>9. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>5. ___________________________</span></div>
-                    <div class="border-b border-dotted border-gray-400 pb-0.5"><span>10. ___________________________</span></div>
+                <div class="pt-1.5">
+                    <p class="font-bold text-xs border-b border-black pb-0.5 mb-1.5">Signatures of the Participating Staff:</p>
+                    <div class="grid grid-cols-2 gap-x-8 gap-y-1 text-xs">
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>1. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>6. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>2. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>7. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>3. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>8. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>4. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>9. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>5. ___________________________</span></div>
+                        <div class="border-b border-dotted border-gray-400 pb-0.5"><span>10. ___________________________</span></div>
+                    </div>
                 </div>
             </div>
 
-            <div class="flex justify-between pt-8 text-xs text-center font-bold">
+            <div class="flex justify-between pt-6 text-xs text-center font-bold">
                 <div class="space-y-1">
-                    <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Senior Teacher[cite: 2]</p>
+                    <p class="pt-4">_______________________________</p>
+                    <p>Signature of the Senior Teacher</p>
                 </div>
                 <div class="space-y-1">
-                    <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Headmaster[cite: 2]</p>
+                    <p class="pt-4">_______________________________</p>
+                    <p>Signature of the Headmaster</p>
                 </div>
             </div>
         </div>
 
         <!-- REPORT 3: VOUCHER RECEIPT -->
-        <div id="report3" class="report-view hidden single-page-fit flex flex-col justify-between py-6 px-4 sm:px-8 border-2 border-black min-h-[90vh]">
-            <div>
-                <!-- Centered Title -->
-                <div class="text-center space-y-1 mb-8">
-                    <h1 class="text-xl sm:text-2xl font-extrabold uppercase tracking-wider underline">VOUCHER RECIEPT</h1>
-                    <p class="text-xs font-semibold tracking-normal text-gray-700">
-                        School: <span class="rptSchoolName font-bold">ZPHS AKKANNAPET</span> | UDISE: <span class="rptUdise font-bold">36180700907</span>
-                    </p>
-                </div>
-
-                <!-- Large Center Box for Pasting Original Voucher -->
-                <div class="w-full max-w-xl mx-auto h-[48vh] border-2 border-dashed border-gray-600 rounded-lg flex flex-col items-center justify-center bg-gray-50/50 p-6 text-center space-y-2">
-                    <p class="text-xl sm:text-2xl font-extrabold tracking-widest text-gray-800 uppercase">ORIGINAL</p>
-                    <p class="text-xl sm:text-2xl font-extrabold tracking-widest text-gray-800 uppercase">VOUCHER</p>
-                    <p class="text-base sm:text-lg font-bold tracking-wider text-gray-600 uppercase mt-2">PASTE HERE</p>
-                </div>
+        <div id="report3" class="report-view hidden a4-page-fit p-6 sm:p-10 border-2 border-black">
+            <div class="text-center space-y-1.5 pt-2">
+                <h1 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-wider underline">VOUCHER RECIEPT</h1>
+                <p class="text-xs sm:text-sm font-semibold tracking-normal text-gray-700">
+                    School: <span class="rptSchoolName font-bold">ZPHS AKKANNAPET</span> | UDISE: <span class="rptUdise font-bold">36180700907</span>
+                </p>
             </div>
 
-            <!-- Certification and Signature Block at Bottom -->
-            <div class="mt-8 space-y-6">
+            <div class="w-full flex-1 my-6 min-h-[160mm] border-2 border-dashed border-gray-700 rounded-lg flex flex-col items-center justify-center bg-gray-50/60 p-8 text-center space-y-3">
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-widest text-gray-800 uppercase">ORIGINAL</p>
+                <p class="text-3xl sm:text-4xl font-extrabold tracking-widest text-gray-800 uppercase">VOUCHER</p>
+                <p class="text-lg sm:text-xl font-bold tracking-wider text-gray-600 uppercase mt-4">PASTE HERE</p>
+            </div>
+
+            <div class="space-y-6 pb-2">
                 <div>
-                    <h2 class="font-extrabold text-xs sm:text-sm uppercase tracking-wider underline mb-2">CERTIFICATION</h2>
+                    <h2 class="font-extrabold text-xs sm:text-sm uppercase tracking-wider underline mb-1.5">CERTIFICATION</h2>
                     <p class="text-justify text-xs sm:text-sm leading-relaxed indent-6">
-                        It is hereby certified that the items purchased as mentioned above have been received in good condition and in accordance with the prescribed standards, and have been recorded on page no. <span contenteditable="true" class="editable font-bold">_____</span> of the stock register[cite: 4].
+                        It is hereby certified that the items purchased as mentioned above have been received in good condition and in accordance with the prescribed standards, and have been recorded on page no. <span contenteditable="true" class="editable font-bold">_____</span> of the stock register.
                     </p>
                 </div>
 
-                <div class="pt-8 text-right">
+                <div class="text-right pt-4">
                     <p class="font-extrabold text-xs sm:text-sm uppercase tracking-wide">SIGNATURE OF THE HEADMASTER</p>
-                    <p class="text-xs text-gray-600 mt-1 font-semibold rptSchoolName">ZPHS AKKANNAPET</p>
+                    <p class="text-xs text-gray-700 mt-1 font-semibold rptSchoolName">ZPHS AKKANNAPET</p>
                 </div>
             </div>
         </div>
@@ -552,7 +583,7 @@
             <!-- Receipt GEN -->
             <div class="receipt-block page-break pb-8">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline" contenteditable="true" class="editable-block">ADVANCE STAMPED RECEIPT (GEN COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-gen">M/S GEN SUPPLIERS</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-gen">456</span></p>
@@ -575,7 +606,7 @@
             <!-- Receipt SC -->
             <div class="receipt-block page-break pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (SC COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-sc">M/S SC TRADERS</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-sc">789</span></p>
@@ -598,7 +629,7 @@
             <!-- Receipt ST -->
             <div class="receipt-block pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (ST COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>[cite: 1].</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>.</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-st">M/S ST ENTERPRISES</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-st">123</span></p>
@@ -625,7 +656,7 @@
             <p class="text-center">(For the financial year 2026-27)</p>
             <p class="text-center font-bold uppercase"><span contenteditable="true" class="editable rptSchoolName">ZPHS AKKANNAPET</span> (DDO Code: <span contenteditable="true" class="editable rptDdoCode">18050308005</span>), Mdl <span contenteditable="true" class="editable rptMandal">AKKANNAPETA</span>, Dist.<span contenteditable="true" class="editable rptDist">SIDDIPET</span></p>
             <p class="text-center font-bold uppercase">UNDER SNA SPARSH ACCOUNT <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span></p>
-            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>)[cite: 1].</p>
+            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>).</p>
             <table class="my-6">
                 <tr class="bg-gray-100 font-bold"><th>S.No</th><th>Category</th><th>Amount Sanctioned</th><th>Already Utilized</th><th>Present Utilisation</th><th>Balance</th></tr>
                 <tr><td>1</td><td>GEN</td><td><span class="rptGen">18,000</span></td><td><span class="rptGenAlready">0</span></td><td><span class="rptGenPresent">18,000</span></td><td><span class="rptGenBal">0</span></td></tr>
