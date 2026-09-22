@@ -16,14 +16,6 @@
         .editable-block { background-color: #fef08a; border: 1px dashed #2563eb; padding: 2px 6px; outline: none; border-radius: 3px; }
         .editable-block:focus { background-color: #fef9c3; border: 1px solid #1d4ed8; }
         .report-view { position: relative; }
-        .report-view::before {
-            content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            width: 450px; height: 450px;
-            background-image: url('https://raw.githubusercontent.com/ashokvemulad-sys/sparsh-reports/refs/heads/main/logo.png');
-            background-repeat: no-repeat; background-position: center; background-size: contain;
-            opacity: 0.025; pointer-events: none; z-index: 0;
-        }
-        .report-view > * { position: relative; z-index: 1; }
         table { border-collapse: collapse; width: 100%; background: transparent; }
         th, td { border: 1px solid #000; padding: 3.5px 4px; text-align: center; }
         .text-justify { text-align: justify; }
@@ -37,20 +29,19 @@
             .editable, .editable-block { background-color: transparent !important; border: none !important; border-bottom: none !important; padding: 0 !important; }
             body { background: #fff !important; }
             .single-page-fit { min-height: 98vh; overflow: hidden; page-break-inside: avoid; }
-            .report-view::before { opacity: 0.12 !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
         }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-100 via-blue-50/30 to-indigo-50/20 min-h-screen text-slate-800 antialiased pb-12">
 
-    <!-- TOP VIBRANT APP HEADER -->
+    <!-- APP HEADER CONTROLS -->
     <header class="no-print bg-gradient-to-r from-blue-900 via-indigo-800 to-purple-900 text-white shadow-xl sticky top-0 z-30 border-b border-indigo-700/50 backdrop-blur-md">
         <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
             <div class="flex items-center gap-3">
                 <img src="https://raw.githubusercontent.com/ashokvemulad-sys/sparsh-reports/refs/heads/main/logo.png" alt="Logo" class="h-10 w-10 sm:h-12 sm:w-12 object-contain drop-shadow-md">
                 <div>
                     <h1 class="text-xs sm:text-base font-extrabold tracking-tight uppercase leading-tight bg-gradient-to-r from-white via-blue-100 to-amber-200 bg-clip-text text-transparent">Samagra Shiksha - SNA SPARSH</h1>
-                    <p class="text-[10px] sm:text-xs text-blue-200 font-medium">School & Sports Grants FY 2026-27 | Proceedings & Reports</p>
+                    <p class="text-[10px] sm:text-xs text-blue-200 font-medium">Composite, Sports & GCEAC Grants FY 2026-27</p>
                 </div>
             </div>
             
@@ -61,7 +52,7 @@
                 </div>
                 <button onclick="window.print()" class="bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 active:scale-95 transition text-slate-950 px-4 py-2 rounded-xl text-xs font-bold shadow-md flex items-center gap-1.5 border border-amber-300">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
-                    <span>Print Report</span>
+                    <span>Print Active Report</span>
                 </button>
             </div>
         </div>
@@ -69,7 +60,7 @@
 
     <main class="no-print max-w-6xl mx-auto p-3 sm:p-6 space-y-4">
         
-        <!-- STEP 1: MODERN FILTER & DATA CARD -->
+        <!-- STEP 1: FILTER CARD -->
         <div class="bg-white/95 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md border border-slate-200/80 transition-all">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 mb-4 border-b border-slate-100 gap-2">
                 <div class="flex items-center gap-2.5">
@@ -86,14 +77,15 @@
                 </div>
             </div>
 
-            <!-- FILTERS GRID -->
+            <!-- FILTERS GRID INCLUDING GCEAC GRANT -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
                 <div>
                     <label class="block text-[11px] font-bold tracking-wider text-purple-700 uppercase mb-1">Grant Type</label>
                     <select id="grantTypeSelect" class="w-full text-xs p-2.5 bg-purple-50/60 border border-purple-200 rounded-xl font-bold text-slate-800 focus:ring-2 focus:ring-purple-500 focus:bg-white focus:outline-none transition shadow-sm">
                         <option value="">-- All Grant Types --</option>
-                        <option value="Sports Grant">⚽ Sports Grant</option>
                         <option value="Composit School Grant">🏫 Composite School Grant</option>
+                        <option value="Sports Grant">⚽ Sports Grant</option>
+                        <option value="Adolescent Safety (GCEASCS) Grant">🛡️ GCEAC / Adolescent Safety</option>
                         <option value="CRC Grant">🏢 CRC Grant</option>
                         <option value="MRC Grant">🏛️ MRC Grant</option>
                     </select>
@@ -149,7 +141,7 @@
             </div>
         </div>
 
-        <!-- STEP 2: EDITABLE HM/DDO & VENDOR BANK DETAILS (AUTO SYNCED) -->
+        <!-- STEP 2: EDITABLE HM/DDO & VENDOR BANK DETAILS -->
         <div class="bg-white/95 rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-md border border-slate-200/80 transition-all">
             <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
                 <div class="flex items-center gap-2.5">
@@ -227,16 +219,19 @@
             </div>
         </div>
 
-        <!-- MOBILE-FRIENDLY HORIZONTALLY SCROLLABLE TABS -->
+        <!-- 8 TABS -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 text-xs">
             <button onclick="switchReport(1)" id="tab1" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md transition">1. Proceedings</button>
-            <button onclick="switchReport(2)" id="tab2" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">2. Resolution (Model)</button>
-            <button onclick="switchReport(3)" id="tab3" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">3. Receipts (x3)</button>
-            <button onclick="switchReport(4)" id="tab4" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">4. UC (Single)</button>
-            <button onclick="switchReport(5)" id="tab5" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">5. Budget Register</button>
-            <button onclick="switchReport(6)" id="tab6" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">6. Consolidated UC</button>
-            <button onclick="switchReport(7)" id="tab7" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-300 transition flex items-center gap-1">
-                <span>📋 7. DDO-Wise All Grants Report</span>
+            <button onclick="switchReport(2)" id="tab2" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">2. Resolution</button>
+            <button onclick="switchReport(3)" id="tab3" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-300 transition flex items-center gap-1">
+                <span>🧾 3. Voucher Receipt</span>
+            </button>
+            <button onclick="switchReport(4)" id="tab4" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">4. Receipts (x3)</button>
+            <button onclick="switchReport(5)" id="tab5" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">5. UC (Single)</button>
+            <button onclick="switchReport(6)" id="tab6" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">6. Budget Register</button>
+            <button onclick="switchReport(7)" id="tab7" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition">7. Consolidated UC</button>
+            <button onclick="switchReport(8)" id="tab8" class="whitespace-nowrap px-4 py-2.5 rounded-xl font-bold bg-purple-50 text-purple-800 hover:bg-purple-100 border border-purple-300 transition flex items-center gap-1">
+                <span>📋 8. DDO-Wise All Grants Report</span>
             </button>
         </div>
     </main>
@@ -269,7 +264,7 @@
             <p class="text-justify indent-6 text-xs">With reference to the 2nd citation above, the budget has been released under Samagra Shiksha, SNA-SPARSH via IFMIS for the activity of <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> of <span contenteditable="true" class="editable font-bold rptSchoolName">ZPHS AKKANNAPET</span>. Vide reference 3rd cited, the activity-in-charge has conducted the activity through the committee resolution and submitted the expenditure particulars as per the prescribed norms.</p>
             
             <p class="text-justify indent-6 text-xs leading-relaxed">
-                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below.
+                Therefore, as per the powers delegated through the reference cited 4th above, Sanction is hereby accorded for <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> towards implementation of programmes as per the norms shown below[cite: 3].
             </p>
 
             <table class="my-2 text-[9.5pt]">
@@ -383,19 +378,19 @@
             </div>
             
             <p class="text-justify indent-6 text-xs leading-relaxed">
-                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure.
+                The Treasury Officer is requested to honour the bill and credit the amount directly to the respective vendor accounts as per the details of Expenditures and Agency/Vendors in present utilisation enclosed in the Annexure[cite: 3].
             </p>
 
             <div class="mt-6 flex justify-between text-xs items-start">
                 <div class="space-y-1">
                     <p class="font-bold">Copy to</p>
-                    <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information</p>
-                    <p>2. STO Concerned</p>
-                    <p>3. Office copy</p>
+                    <p>1. DPO <span class="rptDist uppercase font-semibold">SIDDIPET</span> for information[cite: 3]</p>
+                    <p>2. STO Concerned[cite: 3]</p>
+                    <p>3. Office copy[cite: 3]</p>
                 </div>
                 <div class="text-center space-y-1 pr-4">
                     <p class="font-bold text-sm">Gazetted Headmaster</p>
-                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span></p>
+                    <p>ZPHS <span class="rptDdoOfficeSimple font-semibold">AKKANNAPET</span>[cite: 3]</p>
                 </div>
             </div>
         </div>
@@ -418,15 +413,15 @@
             </h2>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme.
+                The Headmaster, SMC and staff of <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong>, District <strong class="rptDist">SIDDIPET</strong> have unanimously resolved to utilize the Sanctioned <span class="rptGrantTypeTitle">Composite School Grants</span> under the GEN/SC/ST head amounting to <strong>Rs. <span class="rptTotal font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> received under SNA SPARSH account. These funds will be used towards conducting activities under the <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> during the Financial year (FY) 2026-27, in accordance with the guidelines issued by the Government and the objectives of the scheme[cite: 2].
             </p>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines.
+                Out of the sanctioned amount, a sum of <strong>Rs. <span class="rptTotalPresent font-bold">25000</span>/- (Rupees <span class="rptTotalWords font-bold">Twenty five Thousand rupees only</span>)</strong> for the present spell shall be deposited into the concerned vendor's account and utilized strictly in accordance with the prescribed guidelines[cite: 2].
             </p>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure.
+                It is resolved to pay the expenditure incurred by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mandal <strong class="rptMandal">AKKANNAPETA</strong> school towards Utilization of Annual School Grants expenses to the vendors by transferring the amount to their bank account through IFMIS portal as shown below Annexure[cite: 2].
             </p>
 
             <!-- Annexure Table -->
@@ -486,10 +481,9 @@
             </div>
 
             <p class="text-justify indent-8 text-xs leading-relaxed">
-                It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs.
+                It is further resolved that all interventions grants shall be used solely for the purposes for which they have been sanctioned, in order to meet the identified needs[cite: 2].
             </p>
 
-            <!-- 10 Participating Staff Signatures -->
             <div class="pt-1">
                 <p class="font-bold text-xs border-b border-black pb-0.5 mb-1.5">Signatures of the Participating Staff:</p>
                 <div class="grid grid-cols-2 gap-x-8 gap-y-1.5 text-xs">
@@ -506,25 +500,59 @@
                 </div>
             </div>
 
-            <!-- Clean Signature Lines Without Names -->
             <div class="flex justify-between pt-8 text-xs text-center font-bold">
                 <div class="space-y-1">
                     <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Senior Teacher</p>
+                    <p>Signature of the Senior Teacher[cite: 2]</p>
                 </div>
                 <div class="space-y-1">
                     <p class="pt-6">_______________________________</p>
-                    <p>Signature of the Headmaster</p>
+                    <p>Signature of the Headmaster[cite: 2]</p>
                 </div>
             </div>
         </div>
 
-        <!-- REPORT 3: RECEIPTS (GEN, SC, ST) -->
-        <div id="report3" class="report-view hidden">
+        <!-- REPORT 3: VOUCHER RECEIPT -->
+        <div id="report3" class="report-view hidden single-page-fit flex flex-col justify-between py-6 px-4 sm:px-8 border-2 border-black min-h-[90vh]">
+            <div>
+                <!-- Centered Title -->
+                <div class="text-center space-y-1 mb-8">
+                    <h1 class="text-xl sm:text-2xl font-extrabold uppercase tracking-wider underline">VOUCHER RECIEPT</h1>
+                    <p class="text-xs font-semibold tracking-normal text-gray-700">
+                        School: <span class="rptSchoolName font-bold">ZPHS AKKANNAPET</span> | UDISE: <span class="rptUdise font-bold">36180700907</span>
+                    </p>
+                </div>
+
+                <!-- Large Center Box for Pasting Original Voucher -->
+                <div class="w-full max-w-xl mx-auto h-[48vh] border-2 border-dashed border-gray-600 rounded-lg flex flex-col items-center justify-center bg-gray-50/50 p-6 text-center space-y-2">
+                    <p class="text-xl sm:text-2xl font-extrabold tracking-widest text-gray-800 uppercase">ORIGINAL</p>
+                    <p class="text-xl sm:text-2xl font-extrabold tracking-widest text-gray-800 uppercase">VOUCHER</p>
+                    <p class="text-base sm:text-lg font-bold tracking-wider text-gray-600 uppercase mt-2">PASTE HERE</p>
+                </div>
+            </div>
+
+            <!-- Certification and Signature Block at Bottom -->
+            <div class="mt-8 space-y-6">
+                <div>
+                    <h2 class="font-extrabold text-xs sm:text-sm uppercase tracking-wider underline mb-2">CERTIFICATION</h2>
+                    <p class="text-justify text-xs sm:text-sm leading-relaxed indent-6">
+                        It is hereby certified that the items purchased as mentioned above have been received in good condition and in accordance with the prescribed standards, and have been recorded on page no. <span contenteditable="true" class="editable font-bold">_____</span> of the stock register[cite: 4].
+                    </p>
+                </div>
+
+                <div class="pt-8 text-right">
+                    <p class="font-extrabold text-xs sm:text-sm uppercase tracking-wide">SIGNATURE OF THE HEADMASTER</p>
+                    <p class="text-xs text-gray-600 mt-1 font-semibold rptSchoolName">ZPHS AKKANNAPET</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- REPORT 4: RECEIPTS (GEN, SC, ST) -->
+        <div id="report4" class="report-view hidden">
             <!-- Receipt GEN -->
             <div class="receipt-block page-break pb-8">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline" contenteditable="true" class="editable-block">ADVANCE STAMPED RECEIPT (GEN COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>.</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptGenPresent">18000</span>/- (<span contenteditable="true" class="editable" id="rptGenWords">Eighteen Thousand rupees only</span>)</strong> towards <strong>GENERAL Component (Head of Account: 2202-01-001-15-05-500-503)</strong> for <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span>[cite: 1].</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-gen">M/S GEN SUPPLIERS</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-gen">456</span></p>
@@ -547,7 +575,7 @@
             <!-- Receipt SC -->
             <div class="receipt-block page-break pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (SC COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>.</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSCPresent">4250</span>/- (<span contenteditable="true" class="editable" id="rptScWords">Four Thousand Two Hundred and Fifty rupees only</span>)</strong> towards <strong>SC Component (Head of Account: 2202-01-789-15-05-500-503)</strong>[cite: 1].</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-sc">M/S SC TRADERS</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-sc">789</span></p>
@@ -570,7 +598,7 @@
             <!-- Receipt ST -->
             <div class="receipt-block pb-8 pt-4">
                 <div class="flex justify-between font-bold"><p>Date: <span class="rptDate editable" contenteditable="true">27/Aug/2026</span></p><h2 class="uppercase underline">ADVANCE STAMPED RECEIPT (ST COMPONENT)</h2><p></p></div>
-                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>.</p>
+                <p class="text-justify mt-4">Received with thanks from the Office of the <strong class="rptSchoolName">ZPHS AKKANNAPET</strong>, Mdl <strong class="rptMandal">AKKANNAPETA</strong>, Dist.<strong class="rptDist">SIDDIPET</strong>, the sum of <strong>Rs. <span contenteditable="true" class="editable rptSTPresent">2750</span>/- (<span contenteditable="true" class="editable" id="rptStWords">Two Thousand Seven Hundred and Fifty rupees only</span>)</strong> towards <strong>ST Component (Head of Account: 2202-01-796-15-05-500-503)</strong>[cite: 1].</p>
                 <div class="ml-4 mt-2 leading-relaxed text-xs">
                     <p>1. Name of the Beneficiary / Vendor: <span contenteditable="true" class="editable font-bold auto-vendor-st">M/S ST ENTERPRISES</span></p>
                     <p>2. Bank Account Number: <span contenteditable="true" class="editable font-bold font-mono auto-acc-st">123</span></p>
@@ -591,13 +619,13 @@
             </div>
         </div>
 
-        <!-- REPORT 4: UTILIZATION CERTIFICATE -->
-        <div id="report4" class="report-view hidden space-y-4">
+        <!-- REPORT 5: UTILIZATION CERTIFICATE -->
+        <div id="report5" class="report-view hidden space-y-4">
             <h2 class="text-center font-bold underline uppercase" contenteditable="true">UTILIZATION CERTIFICATE</h2>
             <p class="text-center">(For the financial year 2026-27)</p>
             <p class="text-center font-bold uppercase"><span contenteditable="true" class="editable rptSchoolName">ZPHS AKKANNAPET</span> (DDO Code: <span contenteditable="true" class="editable rptDdoCode">18050308005</span>), Mdl <span contenteditable="true" class="editable rptMandal">AKKANNAPETA</span>, Dist.<span contenteditable="true" class="editable rptDist">SIDDIPET</span></p>
             <p class="text-center font-bold uppercase">UNDER SNA SPARSH ACCOUNT <span class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</span></p>
-            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>).</p>
+            <p class="text-justify indent-8 mt-6">Certified that a sum of <strong>Rs. <span contenteditable="true" class="editable rptTotal">25000</span> (<span contenteditable="true" class="editable rptTotalWords">Twenty five Thousand rupees only</span>)</strong> was received under SNA Sparsh Account during the financial year 2026-27 towards <strong class="rptGrantTypeTitle">COMPOSITE SCHOOL GRANT</strong> by <strong class="rptSchoolName">ZPHS AKKANNAPET</strong> (UDISE: <strong class="rptUdise">36180700907</strong>)[cite: 1].</p>
             <table class="my-6">
                 <tr class="bg-gray-100 font-bold"><th>S.No</th><th>Category</th><th>Amount Sanctioned</th><th>Already Utilized</th><th>Present Utilisation</th><th>Balance</th></tr>
                 <tr><td>1</td><td>GEN</td><td><span class="rptGen">18,000</span></td><td><span class="rptGenAlready">0</span></td><td><span class="rptGenPresent">18,000</span></td><td><span class="rptGenBal">0</span></td></tr>
@@ -614,8 +642,8 @@
             </div>
         </div>
 
-        <!-- REPORT 5: BUDGET WATCH REGISTER -->
-        <div id="report5" class="report-view hidden space-y-4" style="font-size: 8.5pt;">
+        <!-- REPORT 6: BUDGET WATCH REGISTER -->
+        <div id="report6" class="report-view hidden space-y-4" style="font-size: 8.5pt;">
             <p class="text-left font-bold">Page 1 of 1</p>
             <h2 class="text-center font-bold uppercase underline">SMC-BUDGET WATCH REGISTER - <span class="rptSchoolName">ZPHS AKKANNAPET</span> (UDISE: <span class="rptUdise">36180700907</span>)</h2>
             <table class="mt-6 w-full text-center">
@@ -645,8 +673,8 @@
             </table>
         </div>
 
-        <!-- REPORT 6: CONSOLIDATED UC -->
-        <div id="report6" class="report-view hidden space-y-4">
+        <!-- REPORT 7: CONSOLIDATED UC -->
+        <div id="report7" class="report-view hidden space-y-4">
             <p class="text-left font-bold">Page 1 of 1</p>
             <h2 class="text-center font-bold uppercase underline">CONSOLIDATED UTILIZATION CERTIFICATE FOR FY 2026-27</h2>
             <div class="flex justify-between font-bold my-4">
@@ -676,8 +704,8 @@
             </table>
         </div>
 
-        <!-- REPORT 7: DDO CODE WISE ALL GRANTS RELEASED REPORT -->
-        <div id="report7" class="report-view hidden space-y-4">
+        <!-- REPORT 8: DDO CODE WISE ALL GRANTS RELEASED REPORT -->
+        <div id="report8" class="report-view hidden space-y-4">
             <div class="text-center font-bold mb-3 uppercase">
                 <h2 class="text-base font-bold underline">SAMAGRA SHIKSHA - SNA SPARSH FY 2026-27</h2>
                 <h3 class="text-sm font-bold mt-1">DDO-WISE ALL GRANTS RELEASED & SANCTION PARTICULARS</h3>
@@ -857,20 +885,22 @@
 
         function switchReport(num) {
             activeReport = num;
-            for (let i = 1; i <= 7; i++) {
+            for (let i = 1; i <= 8; i++) {
                 const rpt = document.getElementById(`report${i}`);
                 if (rpt) rpt.classList.add('hidden');
                 const tab = document.getElementById(`tab${i}`);
                 if (tab) {
-                    tab.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md', 'bg-purple-700');
+                    tab.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md', 'bg-purple-700', 'bg-emerald-600');
                     tab.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
                 }
             }
             const activeTab = document.getElementById(`tab${num}`);
             if (activeTab) {
                 activeTab.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
-                if (num === 7) {
+                if (num === 8) {
                     activeTab.classList.add('bg-purple-700', 'text-white', 'shadow-md');
+                } else if (num === 3) {
+                    activeTab.classList.add('bg-emerald-600', 'text-white', 'shadow-md');
                 } else {
                     activeTab.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md');
                 }
@@ -878,7 +908,7 @@
             const activeRpt = document.getElementById(`report${num}`);
             if (activeRpt) activeRpt.classList.remove('hidden');
 
-            if (num === 7) {
+            if (num === 8) {
                 renderDDOReport();
             }
         }
@@ -889,7 +919,6 @@
             document.querySelectorAll('.rptDate').forEach(el => el.innerText = formattedDate);
         }
 
-        // UNIFIED DATA LOADER
         function initDataLoader() {
             fetch("School Grants.xlsx")
                 .then(res => {
@@ -1032,7 +1061,11 @@
             const types = [...new Set(allData.map(i => i.gt))].filter(Boolean);
             select.innerHTML = '<option value="">-- All Grant Types --</option>';
             types.forEach(t => {
-                const icon = t.toLowerCase().includes('sport') ? '⚽ ' : '🏫 ';
+                let icon = '🏫 ';
+                if (t.toLowerCase().includes('sport')) icon = '⚽ ';
+                else if (t.toLowerCase().includes('adolescent') || t.toLowerCase().includes('gcea')) icon = '🛡️ ';
+                else if (t.toLowerCase().includes('crc')) icon = '🏢 ';
+                else if (t.toLowerCase().includes('mrc')) icon = '🏛️ ';
                 select.add(new Option(icon + t, t));
             });
         }
@@ -1043,7 +1076,7 @@
             document.getElementById('mandalSelect').onchange = () => { populateDDOs(); };
             document.getElementById('ddoSelect').onchange = () => { 
                 populateSchools(); 
-                if (activeReport === 7) renderDDOReport();
+                if (activeReport === 8) renderDDOReport();
             };
             document.getElementById('schoolSelect').onchange = (e) => {
                 const s = allData.find(x => x.c === e.target.value && (!document.getElementById('grantTypeSelect').value || x.gt === document.getElementById('grantTypeSelect').value));
@@ -1144,7 +1177,9 @@
 
             schSelect.innerHTML = '<option value="">-- Select School --</option>';
             subset.forEach(s => {
-                const icon = s.gt.includes('Sport') ? '⚽ ' : '';
+                let icon = '🏫 ';
+                if (s.gt.includes('Sport')) icon = '⚽ ';
+                else if (s.gt.includes('Adolescent') || s.gt.includes('GCEA')) icon = '🛡️ ';
                 schSelect.add(new Option(`${icon}${s.n} (${s.c}) - ₹${s.t.toLocaleString('en-IN')}`, s.c));
             });
 
@@ -1189,8 +1224,21 @@
 
             const isSports = s.gt.toLowerCase().includes('sport');
             const isCRC = s.gt.toLowerCase().includes('crc');
-            const titleUpper = isSports ? "SPORTS & PHYSICAL EDUCATION GRANT" : (isCRC ? "CRC GRANT" : s.gt.toUpperCase());
-            const subAct = isSports ? "SPORTS EQUIPMENT & PHYSICAL EDUCATION" : (isCRC ? "CRC ACTIVITIES & MEETINGS" : s.gt.toUpperCase());
+            const isGCEAC = s.gt.toLowerCase().includes('adolescent') || s.gt.toLowerCase().includes('gcea');
+
+            let titleUpper = s.gt.toUpperCase();
+            let subAct = s.gt.toUpperCase();
+
+            if (isSports) {
+                titleUpper = "SPORTS & PHYSICAL EDUCATION GRANT";
+                subAct = "SPORTS EQUIPMENT & PHYSICAL EDUCATION";
+            } else if (isCRC) {
+                titleUpper = "CRC GRANT";
+                subAct = "CRC ACTIVITIES & MEETINGS";
+            } else if (isGCEAC) {
+                titleUpper = "ADOLESCENT SAFETY (GCEASCS) GRANT";
+                subAct = "GIRLS EMPOWERMENT & ADOLESCENT SAFETY";
+            }
 
             document.querySelectorAll('.rptGrantTypeTitle').forEach(el => el.innerText = titleUpper);
             document.querySelectorAll('.rptGrantSubAct').forEach(el => el.innerText = subAct);
@@ -1201,6 +1249,9 @@
             } else if (isSports) {
                 document.querySelectorAll('.rptMajorSubComp').forEach(el => el.innerText = "1.5.4 - Sports & Physical Education");
                 document.querySelectorAll('.rptMajorActivity').forEach(el => el.innerText = "1.5.4.1. - Sports Equipment Grant");
+            } else if (isGCEAC) {
+                document.querySelectorAll('.rptMajorSubComp').forEach(el => el.innerText = "1.5.11 - Gender & Equity Interventions");
+                document.querySelectorAll('.rptMajorActivity').forEach(el => el.innerText = "1.5.11.1 - Adolescent Safety & GCEAC Activities");
             } else {
                 document.querySelectorAll('.rptMajorSubComp').forEach(el => el.innerText = "Composite School Grant");
                 document.querySelectorAll('.rptMajorActivity').forEach(el => el.innerText = "COMPOSITE SCHOOL GRANT");
@@ -1224,9 +1275,13 @@
             document.querySelectorAll('.rptST').forEach(el => el.innerText = s.st.toLocaleString('en-IN'));
             document.querySelectorAll('.rptTotal').forEach(el => el.innerText = s.t.toLocaleString('en-IN'));
 
+            let badgeIcon = '🏫 ';
+            if (isSports) badgeIcon = '⚽ ';
+            else if (isGCEAC) badgeIcon = '🛡️ ';
+
             document.getElementById('schoolSummaryBadge').innerHTML = `
                 <span class="inline-flex items-center gap-1.5 bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-900 px-3 py-1 rounded-xl border border-blue-200 shadow-sm">
-                    <span class="font-extrabold">${isSports ? '⚽ ' : ''}${s.n}</span> | <span class="text-purple-700 font-bold">${s.gt}</span> | ₹${s.t.toLocaleString('en-IN')}
+                    <span class="font-extrabold">${badgeIcon}${s.n}</span> | <span class="text-purple-700 font-bold">${s.gt}</span> | ₹${s.t.toLocaleString('en-IN')}
                 </span>
             `;
 
@@ -1234,7 +1289,7 @@
             syncInputs();
         }
 
-        // REPORT 7: DDO CODE WISE ALL GRANTS RELEASED REPORT
+        // REPORT 8: DDO CODE WISE ALL GRANTS RELEASED REPORT
         function renderDDOReport() {
             const selectedDDO = document.getElementById('ddoSelect').value;
             let ddoRows = [];
@@ -1280,12 +1335,17 @@
                 sumST += row.st;
                 sumTotal += row.t;
 
+                let tag = '🏫 Composite';
+                if (row.gt.includes('Sport')) tag = '⚽ Sports';
+                else if (row.gt.includes('CRC')) tag = '🏢 CRC';
+                else if (row.gt.includes('Adolescent') || row.gt.includes('GCEA')) tag = '🛡️ GCEAC';
+
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
                     <td>${idx + 1}</td>
                     <td class="font-mono text-left pl-2">${row.c}</td>
                     <td class="text-left pl-2 font-medium">${row.n}</td>
-                    <td class="text-xs">${row.gt.includes('Sport') ? '⚽ Sports' : (row.gt.includes('CRC') ? '🏢 CRC' : '🏫 Composite')}</td>
+                    <td class="text-xs">${tag}</td>
                     <td class="text-right pr-2">${row.g.toLocaleString('en-IN')}</td>
                     <td class="text-right pr-2">${row.sc.toLocaleString('en-IN')}</td>
                     <td class="text-right pr-2">${row.st.toLocaleString('en-IN')}</td>
